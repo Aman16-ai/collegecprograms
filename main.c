@@ -5,7 +5,23 @@ struct node {
   struct node *next;
 };
 struct node *head = NULL;
+void insertInSortedManner(int data) {
+  struct node* newNode,*temp,*current;
+  newNode = (struct node*)malloc(sizeof(struct node));
+  if(head == NULL) {
+    head = newNode;
+  }
+  else {
+    current = head;
+    while(current!=NULL && current->data < newNode->data) {
+      temp = current;
+      current = current->next;
+    }
 
+    newNode->next = current;
+    temp->next = newNode;
+  }
+}
 void insertAtEnd(int data) {
   struct node *temp,*t;
   temp = (struct node*)malloc(sizeof(struct node*));
@@ -39,6 +55,7 @@ int main(void) {
   insertAtEnd(4);
   insertAtEnd(5);
   insertAtEnd(7);
+  insertInSortedManner(6);
   display();
   return 0;
 }

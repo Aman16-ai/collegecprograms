@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+//si,ci,swap and factorial
 void swapUsingThreeVarables(int a,int b) {
   int temp;
   temp = a;
