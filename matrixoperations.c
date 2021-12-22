@@ -12,7 +12,18 @@ int menu() {
   printf("\nPress 6.Exit");
   printf("\n\nEnter your choice");
   scanf("%d",&choice);
+  system("clear");
   return choice;
+}
+int takeInputSingleMatrix() {
+  printf("\nEnter the row and column of matrix");
+  scanf("%d%d",&row,&col);
+  printf("\n\nEnter the values of matrix");
+  for(int i = 0;i<row;i++) {
+    for(int j = 0;j<col;j++) {
+      scanf("%d",&mat1[i][j]);
+    }
+}
 }
 int takematinputforAdditionAndSub() {
   int input_flag = 0;
@@ -40,8 +51,17 @@ int takematinputforAdditionAndSub() {
     return input_flag;
   }
 }
+void displaySingleMatrix() {
+  printf("\n\nvalues of matrix\n");
+  for(int i = 0;i<row;i++) {
+    for(int j = 0;j<col;j++) {
+      printf(" %d ",mat1[i][j]);
+    }
+    printf("\n");
+  }
+}
 void displayMatrixvalues() {
-printf("\n\nvalues of mat1\n");
+  printf("\n\nvalues of mat1\n");
   for(int i = 0;i<row;i++) {
     for(int j = 0;j<col;j++) {
       printf(" %d ",mat1[i][j]);
@@ -58,6 +78,7 @@ printf("\n\nvalues of mat1\n");
 }
 void addMatrices() {
   int flag = takematinputforAdditionAndSub();
+  system("clear");
   if(flag == 1) {
     displayMatrixvalues();
   for(int i =0;i<row;i++) {
@@ -79,6 +100,7 @@ void addMatrices() {
 }
 void subtractMatrices() {
   int flag = takematinputforAdditionAndSub();
+  system("clear");
   if(flag == 1) {
     displayMatrixvalues();
   for(int i =0;i<row;i++) {
@@ -98,6 +120,65 @@ void subtractMatrices() {
     printf("\n\nRow and column must be same for subtraction\n\n");
   }
 }
+void upperAndLower() {
+  takeInputSingleMatrix();
+  system("clear");
+  displaySingleMatrix();
+  int uppermat[row][col],lowermat[row][col];
+  for(int i =0;i<row;i++) {
+    for(int j =0;j<col;j++) {
+      if(i >= j) {
+        uppermat[i][j] = mat1[i][j];
+      }
+      else {
+        uppermat[i][j] = 0;
+      }
+    }
+  }
+  for(int i =0;i<row;i++) {
+    for(int j =0;j<col;j++) {
+      if(i <= j) {
+        lowermat[i][j] = mat1[i][j];
+      }
+      else {
+        lowermat[i][j] = 0;
+      }
+    }
+  }
+  printf("\nThe upper triangle of matrix is \n");
+  for(int i =0;i<row;i++) {
+    for(int j =0;j<col;j++) {
+      printf(" %d ",uppermat[i][j]);
+    }
+    printf("\n");
+  }
+
+  printf("\nThe lower triangle of matrix is \n");
+  for(int i =0;i<row;i++) {
+    for(int j =0;j<col;j++) {
+      printf(" %d ",lowermat[i][j]);
+    }
+    printf("\n");
+  }
+
+}
+void transpose() {
+  takeInputSingleMatrix();
+  system("clear");
+  displaySingleMatrix();
+  for(int i =0;i<row;i++) {
+    for(int j =0;j<col;j++) {
+      resultmat[j][i] = mat1[i][j];
+    }
+  }
+  printf("\n\nThe transpose of matrix is \n");
+  for(int i =0;i<row;i++) {
+    for(int j =0;j<col;j++) {
+      printf(" %d ",resultmat[i][j]);
+    }
+    printf("\n");
+  }
+}
 int main() {
   while(1) {
     switch(menu()) {
@@ -107,8 +188,16 @@ int main() {
       case 2:
       subtractMatrices();
       break;
+      case 3:
+      upperAndLower();
+      break;
+      case 5:
+      transpose();
+      break;
       case 6:
       exit(0);
+      default:
+      printf("\n\nPlease enter valid choice");
     }
   }
   return 0;
