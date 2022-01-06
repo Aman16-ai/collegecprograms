@@ -15,6 +15,46 @@ int menu() {
   system("clear");
   return choice;
 }
+
+void productMat() {
+
+  printf("\nEnter row and column of first matrix");
+  scanf("%d%d",&row,&col);
+  printf("\nEnter the elements in the matrix 1");
+  for(int i =0;i<row;i++) {
+    for(int j =0;j<col;j++) {
+      scanf("%d",&mat1[i][j]);
+    }
+  }
+  printf("\nEnter row and column of second matrix");
+  scanf("%d%d",&row2,&col2);
+  printf("\nEnter the elements in the matrix 2");
+  for(int i =0;i<row2;i++) {
+    for(int j =0;j<col2;j++) {
+      scanf("%d",&mat2[i][j]);
+    }
+  }
+   for (int i = 0; i < row; ++i) {
+      for (int j = 0; j < col2; ++j) {
+         resultmat[i][j] = 0;
+      }
+   }
+
+   for (int i = 0; i < row; ++i) {
+      for (int j = 0; j < col2; ++j) {
+         for (int k = 0; k < col; ++k) {
+            resultmat[i][j] += mat1[i][k] * mat2[k][j];
+         }
+      }
+   }
+   printf("\nProduct of matrices is:\n");
+   for(int i =0;i<row;i++) {
+     for(int j =0;j<col2;j++) {
+       printf("\n%d ",resultmat[i][j]);
+     }
+     printf("\n");
+   }
+}
 int takeInputSingleMatrix() {
   printf("\nEnter the row and column of matrix");
   scanf("%d%d",&row,&col);
@@ -190,6 +230,9 @@ int main() {
       break;
       case 3:
       upperAndLower();
+      break;
+      case 4:
+      productMat();
       break;
       case 5:
       transpose();
